@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crestasom.ecommerce_demo.entity.Cart;
+import com.crestasom.ecommerce_demo.entity.CartDTO;
 import com.crestasom.ecommerce_demo.service.CartService;
 
 @RestController
@@ -23,9 +25,9 @@ public class CartController {
 		return cartService.getCartByUserId(userId);
 	}
 
-	@PostMapping("/{userId}/products/{productId}")
-	public Cart addProductToCart(@PathVariable Long userId, @PathVariable Long productId) {
-		return cartService.addProductToCart(userId, productId);
+	@PostMapping("/add-product")
+	public Cart addProductToCart(@RequestBody CartDTO cartDto) {
+		return cartService.addProductToCart(cartDto);
 	}
 
 	@DeleteMapping("/{userId}/products/{productId}")

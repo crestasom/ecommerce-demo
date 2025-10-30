@@ -2,7 +2,6 @@ package com.crestasom.ecommerce_demo.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +16,25 @@ public class CartRepository {
         return carts;
     }
 
-    public Optional<Cart> findById(Long id) {
-        return carts.stream().filter(cart -> cart.getId().equals(id)).findFirst();
+	public Cart findById(Long id) {
+		for (Cart c : carts) {
+			if (c.getId() == id) {
+				return c;
+			}
+		}
+		return null;
+//        return carts.stream().filter(cart -> cart.getId().equals(id)).findFirst();
     }
     
-    public Optional<Cart> findByUserId(Long userId) {
-        return carts.stream().filter(cart -> cart.getUserId().equals(userId)).findFirst();
+	public Cart findByUserId(Long userId) {
+
+		for (Cart c : carts) {
+			if (c.getUser().getId() == userId) {
+				return c;
+			}
+		}
+		return null;
+//        return carts.stream().filter(cart -> cart.getUserId().equals(userId)).findFirst();
     }
 
     public Cart save(Cart cart) {

@@ -12,13 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cart {
     private Long id;
-    private Long userId;
+//    private Long userId;
+	private User user;
     private List<Product> products = new ArrayList<>();
 
-	public Cart(Long id, Long userId) {
+	public Cart(Long id, User user) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.user = user;
 	}
 
 
